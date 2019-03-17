@@ -1,0 +1,12 @@
+{
+  "modid": "freerealestate",
+  "name": "Free Real Estate",
+  "author_list": ["Lobbienjonsji"],
+  "description": "It's free real estate.",
+  "version": "${project.version}",
+  "sts_version": "${SlayTheSpire.version}",
+  "mts_version": "${ModTheSpire.version}",
+  "dependencies": ["basemod", "stslib", "GifTheSpireLib"],
+  "update_json": ""
+}
+
