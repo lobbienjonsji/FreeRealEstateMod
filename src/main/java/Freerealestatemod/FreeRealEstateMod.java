@@ -7,17 +7,12 @@ import com.badlogic.gdx.files.FileHandle;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.characters.Defect;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.exordium.Sssserpent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import GifTheSpire.util.GifAnimation;
 import GifTheSpire.util.IDCheckDontTouchPls;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 @SpireInitializer
 public class FreeRealEstateMod implements
@@ -28,7 +23,7 @@ public class FreeRealEstateMod implements
         BaseMod.subscribe(this);
         setModID("FreeRealEstate");
     }
-    //THIS PART IS IRRELEVANT
+    //THIS PART IS IRRELEVANT DEFAULT MOD STUFF!!!!
 
     public static void setModID(String ID) { // DON'T EDIT
         Gson coolG = new Gson(); // EY DON'T EDIT THIS
