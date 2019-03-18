@@ -28,6 +28,8 @@ public class FreeRealEstateMod implements
         BaseMod.subscribe(this);
         setModID("FreeRealEstate");
     }
+    //THIS PART IS IRRELEVANT
+
     public static void setModID(String ID) { // DON'T EDIT
         Gson coolG = new Gson(); // EY DON'T EDIT THIS
         //   String IDjson = Gdx.files.internal("IDCheckStrings.json").readString(String.valueOf(StandardCharsets.UTF_8)); // i hate u Gdx.files
@@ -66,6 +68,8 @@ public class FreeRealEstateMod implements
     }// NO
     // ====== YOU CAN EDIT AGAIN ======
 
+    //THIS IS WHERE IT GETS RELEVANT AGAIN
+
     @SuppressWarnings("unused")
     public static void initialize() {
         FreeRealEstateMod defaultmod = new FreeRealEstateMod();
@@ -79,6 +83,7 @@ public class FreeRealEstateMod implements
         FreeRealEstate.addAsForeGroundAnimation();
         FreeRealEstate.addAsCharacterAnimation(Defect.class.getName());
     }
+    //ALSO IRRELEVANT
         public static String makeID(String idText) {
         return getModID() + ":" + idText;
     }
