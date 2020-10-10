@@ -1,11 +1,15 @@
 package Freerealestatemod;
 
+import GifTheSpire.GifTheSpireLib;
+import GifTheSpire.Subscribers.PostAnimationEnd;
 import basemod.BaseMod;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.red.Bash;
 import com.megacrit.cardcrawl.characters.Defect;
 import com.megacrit.cardcrawl.events.exordium.Sssserpent;
 import GifTheSpire.util.GifAnimation;
@@ -16,11 +20,16 @@ import java.nio.charset.StandardCharsets;
 
 @SpireInitializer
 public class FreeRealEstateMod implements
-        PostInitializeSubscriber {
+        PostInitializeSubscriber, PostDrawSubscriber, PostAnimationEnd {
     private static String modID;
     public static GifAnimation FreeRealEstate = new GifAnimation("FreeRealEstateResources/images/other/freerealestatepritesheet.png", 5, 17, 0, 0, 2.0F, 2.0F, false );
+    public static GifAnimation Counter = new GifAnimation("FreeRealEstateResources/images/other/time.png", 4, 4, 0, 0, 2.0F, 2.0F, false, 3);
+    public static GifAnimation Counter2 = new GifAnimation("FreeRealEstateResources/images/other/time.png", 4, 4, 0, 0, 0.5F, 0.5F, false, 3);
+    public static GifAnimation Counter3 = new GifAnimation("FreeRealEstateResources/images/other/time.png", 4, 4, 0, 0, 2.0F, 2.0F, false, 3);
+    public static GifAnimation Counter4 = new GifAnimation("FreeRealEstateResources/images/other/time.png", 4, 4, 0, 0, 2.0F, 2.0F, false);
     public FreeRealEstateMod() {
         BaseMod.subscribe(this);
+        GifTheSpireLib.subscribe(this);
         setModID("FreeRealEstate");
     }
     //THIS PART IS IRRELEVANT DEFAULT MOD STUFF!!!!
@@ -75,11 +84,44 @@ public class FreeRealEstateMod implements
         FreeRealEstate.addAsBackgroundAnimation();
         FreeRealEstate.addAsCardAnimation("Strike_R");
         FreeRealEstate.addAsEventAnimation(Sssserpent.class.getName());
-        FreeRealEstate.addAsForeGroundAnimation();
         FreeRealEstate.addAsCharacterAnimation(Defect.class.getName());
+
+        Counter.create();
+        Counter.addAsCardAnimation("Defend_R");
+        Counter.setAnimationspeed(0.5f);
+
+        Counter2.create();
+        Counter2.addAsForeGroundAnimation();
+        Counter2.setLoop(false);
+
+        Counter3.create();
+        Counter3.addAsCardAnimation("Bash");
+        Counter3.setLoop(false);
+        Counter3.setAnimationspeed(0.3f);
+
+        Counter4.create();
+        Counter4.addAsMonsterAnimation("Cultist");
+        Counter4.setAnimationspeed(0.5f);
     }
     //ALSO IRRELEVANT
         public static String makeID(String idText) {
         return getModID() + ":" + idText;
+    }
+
+    @Override
+    public void receivePostDraw(AbstractCard abstractCard) {
+        Counter2.playOnce();
+        if(abstractCard instanceof Bash) {
+            Counter3.ishidden = false;
+            Counter3.playOnceOnSpecificCard(abstractCard);
+        }
+    }
+
+    @Override
+    public void PostAnimationEnd(GifAnimation gifAnimation) {
+        if(gifAnimation == Counter3)
+        {
+            Counter3.ishidden = true;
+        }
     }
 }
